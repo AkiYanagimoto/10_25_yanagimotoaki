@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ホスト登録画面</title>
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Responsive meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        div {
+            padding: 10px;
+            font-size: 16px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">施設登録</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="select.php">施設一覧</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <!-- DBへの書き込み項目 -->
+        <form id="DBform" action="insert.php" method="POST">
+
+            <div class="form-group">
+                <label for="title">名称</label>
+                <input type="text" class="form-control form-control-lg" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="comment">場所に関する説明</label>
+                <input type="text" class="form-control form-control-lg" id="comment" name="comment">
+            </div>
+
+            <div class="price-list row">
+                <div class="form-group col-sm-4">
+                    <label for="price01">価格(1泊)</label>
+                    <input type="text" class="form-control form-control-lg" id="price01" name="price01">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="price07">価格(7泊)</label>
+                    <input type="text" class="form-control form-control-lg" id="price07" name="price07">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="price30">価格(30泊)</label>
+                    <input type="text" class="form-control form-control-lg" id="price30" name="price30">
+                </div>
+            </div>
+
+            <!-- 郵便番号から住所を自動入力 -->
+            <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+
+            <div class="h-adr">
+                <span class="p-country-name" style="display:none;">Japan</span>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="zipcode">郵便番号</label>
+                        <input type="text" class="p-postal-code form-control form-control-lg" size="8" maxlength="8"
+                            id="zipcode" name="zipcode">
+                    </div>
+                    <div class="col-sm-8 d-flex align-items-end">
+                        <p>郵便番号から住所を自動入力</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="prefecture">都道府県</label>
+                    <input type="text" class="p-region form-control form-control-lg" id="prefecture" name="prefecture">
+                </div>
+                <div class="form-group">
+                    <label for="city">市町村</label>
+                    <input type="text"
+                        class="p-locality p-street-address p-extended-address form-control form-control-lg" id="city"
+                        name="city">
+                </div>
+                <div class="form-group">
+                    <label for="adress01">番地など</label>
+                    <input type="text" class="form-control form-control-lg" id="adress01" name="adress01">
+                </div>
+                <div class="form-group">
+                    <label for="adress02">目印となる建物など、補足説明</label>
+                    <input type="text" class="form-control form-control-lg" id="adress02" name="adress02">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <h5>駐車スペースに関して</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="space01" id="space01" value="0">
+                            <input class="form-check-input" type="checkbox" name="space01" id="space01" value="1">
+                            <label class="form-check-label">駐車スペースに関する情報１</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="space02" id="space02" value="0">
+                            <input class="form-check-input" type="checkbox" name="space02" id="space02" value="1">
+                            <label class="form-check-label">駐車スペースに関する情報２</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="space03" id="space03" value="0">
+                            <input class="form-check-input" type="checkbox" name="space03" id="space03" value="1">
+                            <label class="form-check-label">駐車スペースに関する情報３</label>
+                        </div><br>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="space04" id="space04" value="0">
+                            <input class="form-check-input" type="checkbox" name="space04" id="space04" value="1">
+                            <label class="form-check-label">駐車スペースに関する情報４</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="space05" id="space05" value="0">
+                            <input class="form-check-input" type="checkbox" name="space05" id="space05" value="1">
+                            <label class="form-check-label">駐車スペースに関する情報５</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="space06" id="space06" value="0">
+                            <input class="form-check-input" type="checkbox" name="space06" id="space06" value="1">
+                            <label class="form-check-label">駐車スペースに関する情報６</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <h5>オプションサービス</h5>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="option01" id="option01" value="0">
+                            <input class="form-check-input" type="checkbox" name="option01" id="option01" value="1">
+                            <label class="form-check-label">オプションサービス１</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="option02" id="option02" value="0">
+                            <input class="form-check-input" type="checkbox" name="option02" id="option02" value="1">
+                            <label class="form-check-label">オプションサービス２</label>
+                        </div><br>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="option03" id="option03" value="0">
+                            <input class="form-check-input" type="checkbox" name="option03" id="option03" value="1">
+                            <label class="form-check-label">オプションサービス３</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="option04" id="option04" value="0">
+                            <input class="form-check-input" type="checkbox" name="option04" id="option04" value="1">
+                            <label class="form-check-label">オプションサービス４</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <h5>近隣施設</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="nearby01" id="nearby01" value="0">
+                            <input class="form-check-input" type="checkbox" name="nearby01" id="nearby01" value="1">
+                            <label class="form-check-label">近隣施設１</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="nearby02" id="nearby02" value="0">
+                            <input class="form-check-input" type="checkbox" name="nearby02" id="nearby02" value="1">
+                            <label class="form-check-label">近隣施設２</label>
+                        </div><br>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="nearby03" id="nearby03" value="0">
+                            <input class="form-check-input" type="checkbox" name="nearby03" id="nearby03" value="1">
+                            <label class="form-check-label">近隣施設３</label>
+                        </div><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="hidden" name="nearby" id="nearby04" value="0">
+                            <input class="form-check-input" type="checkbox" name="nearby04" id="nearby04" value="1">
+                            <label class="form-check-label">近隣施設４</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label for="cancel01">キャンセルポリシー(平日の場合)</label>
+                    <select class="form-control form-control-lg" id="cancel01" name="cancel01">
+                        <option value="0">３日前まで</option>
+                        <option value="1">５日前まで</option>
+                        <option value="2">７日前まで</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cancel02">キャンセルポリシー(週末・祝日が含まれる場合)</label>
+                    <select class="form-control form-control-lg" id="cancel02" name="cancel02">
+                        <option value="0">７日前まで</option>
+                        <option value="1">９日前まで</option>
+                        <option value="2">１１日前まで</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue ">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href=""> Gs Academy Fukuoka DEV3 No.25</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
